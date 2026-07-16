@@ -2,7 +2,7 @@ name: Run Postman Tests with Newman
 
 on:
   push:
-    branches: [ main ]
+    branches: [ automation ]
   workflow_dispatch:
 
 jobs:
