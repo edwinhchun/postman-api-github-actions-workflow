@@ -1,4 +1,4 @@
-# PokéAPI Pagination Testing — Postman + Newman + GitHub Actions
+# PokéAPI Pagination Testing: Postman + Newman + GitHub Actions
 
 This repo automates a Postman collection that tests pagination against the PokéAPI. The same tests I run locally on Postman also run automatically on every push via GitHub Actions.
 
