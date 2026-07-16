@@ -11,7 +11,7 @@ The collection hits PokéAPI's API and walks through every page of results using
 
 ## Running it automatically (GitHub Actions)
 
-Every push to `main` triggers `.github/workflows/newman-tests.yml`, which:
+Every push to `main` triggers `.github/workflows/newman-tests.yml`. This:
 
 1. Spins up a clean Linux Ubuntu machine
 2. Installs Node.js
