@@ -23,3 +23,5 @@ You can also trigger a run manually from the **Actions** tab without pushing any
 ## Why this exists
 
 This project came out of learning API testing fundamentals in Postman and pushing further into the tooling that surrounds it. I first ran this in the terminal, using Newman after exporting the collection. I built on this further by creating a Github Action workflow, leveraging Claude to write me the YAML file. 
+
+**Built with:** [Postman](https://www.postman.com/) · [PokéAPI](https://pokeapi.co/) · [Claude](https://claude.ai/)
