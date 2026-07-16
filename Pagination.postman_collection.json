@@ -1,0 +1,105 @@
+{
+  "info": {
+    "_postman_id": "50cd2852-7ac7-45bc-a374-48c8d0d79884",
+    "name": "Pagination Exercise PokéAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54488922",
+    "_collection_link": "https://go.postman.co/collection/54488922-50cd2852-7ac7-45bc-a374-48c8d0d79884?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Start Request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Pagination Request A — kicks off the flow by saving the first \"next\" URL",
+              "const response = pm.response.json();",
+              "const nextUrl = response.next || '';",
+              "",
+              "pm.environment.set('Next_url', nextUrl);",
+              "",
+              "if (nextUrl) {",
+              "    console.log('Pagination started. Next page URL saved:', nextUrl);",
+              "} else {",
+              "    console.log('Only one page of results — no next page.');",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://pokeapi.co/api/v2/pokemon?limit=5",
+          "protocol": "https",
+          "host": [
+            "pokeapi",
+            "co"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "pokemon"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch Next URL Request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Pagination Request B — loops through all pages until \"next\" is null",
+              "const response = pm.response.json();",
+              "const nextUrl = response.next || '';",
+              "",
+              "pm.environment.set('Next_url', nextUrl);",
+              "",
+              "if (nextUrl) {",
+              "    console.log('Fetched page. Next page URL saved:', nextUrl);",
+              "    // Loop back to this request to fetch the next page",
+              "    pm.execution.setNextRequest('Fetch Next URL Request');",
+              "} else {",
+              "    console.log('Last page reached. Pagination complete.');",
+              "    pm.execution.setNextRequest(null); // Stop execution",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{Next_url}}",
+          "host": [
+            "{{Next_url}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
