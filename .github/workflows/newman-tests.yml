@@ -1,4 +1,4 @@
-name: Run API collection
+name: Run Postman Collection with Newman
 
 on:
   push:
